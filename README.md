@@ -8,9 +8,9 @@ stream=True
 
 ## Table of contents:
 - [1. Prerequisites](https://github.com/LazaUK/AOAI-Streaming-TokenUsage/blob/main/README.md#1-prerequisites)
-- [2. Shared helper functions](https://github.com/LazaUK/AOAI-Whisper-Gradio/tree/main#option-1---access-to-whisper-models-via-azure-openai-endpoint)
-- [3. System- and Tiktoken-calculated token usage in non-streaming API calls](https://github.com/LazaUK/AOAI-Whisper-Gradio/blob/main#option-2---access-to-whisper-models-via-azure-ai-speech-endpoint)
-- [4. Tiktoken-calculated token usage in streaming API calls](https://github.com/LazaUK/AOAI-Whisper-Gradio/blob/main#option-2---access-to-whisper-models-via-azure-ai-speech-endpoint)
+- [2. Shared helper functions](https://github.com/LazaUK/AOAI-Streaming-TokenUsage/blob/main/README.md#2-shared-helper-functions)
+- [3. System- and Tiktoken-calculated token usage in non-streaming API calls]()
+- [4. Tiktoken-calculated token usage in streaming API calls]()
 
 ## 1. Prerequisites
 These notebooks would require installation of 2 Python packages:
