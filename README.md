@@ -23,7 +23,7 @@ pip install --upgrade openai
 pip install --upgrade tiktoken
 ```
 3. Deploy relevant GPT model in your Azure OpenAI resource.
-![screenshot_1_deploy](images/demo_app_1_deploy.png)
+![screenshot_1_deploy](images/tiktoken_1_deploy.png)
 
 
 
