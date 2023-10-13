@@ -137,3 +137,21 @@ Tiktoken-calculated token usage:
 ```
 
 ## 4. Tiktoken-calculated token usage in streaming API calls
+When the Streaming option is enabled, Completion payload will no longer contain "usage" dictionary. That's why it would be necessary to calculate tokens using packages like tiktoken.
+``` Python
+tiktoken_prompt = [{"role": "user", "content": prompt}]
+tiktoken_prompt_tokens = num_tokens_from_messages(tiktoken_prompt)
+tiktoken_completion_tokens = num_tokens_from_messages("".join(result))
+
+print("Tiktoken-calculated token usage:")
+print(f"- Prompt tokens: {tiktoken_prompt_tokens}")
+print(f"- Completion tokens: {tiktoken_completion_tokens}")
+print(f"- Total tokens: {tiktoken_prompt_tokens + tiktoken_completion_tokens}")
+```
+Withe completion generated in chunks, the total number of tokens will be based on the sum of all generated chunks.
+``` JSON
+Tiktoken-calculated token usage:
+- Prompt tokens: 12
+- Completion tokens: 366
+- Total tokens: 378
+```
