@@ -99,5 +99,41 @@ def num_tokens_from_messages(messages, model="gpt-3.5-turbo-0613"):
 ```
 
 ## 3. System- and Tiktoken-calculated token usage in non-streaming API calls
+When the Streaming option is disabled, Completion payload contains "usage" dictionary with the count of prompt and completion tokens.
+``` JSON
+"usage": {
+  "prompt_tokens": 12,
+  "completion_tokens": 366,
+  "total_tokens": 378
+}
+```
+In "1_AOAI_NonStreaming_Count.ipynb" notebook, you can retrieve both the endpoint provided and Tiktoken-processed token count.
+``` Python
+print("System generated token usage:")
+print(f"- Prompt tokens: {usage.prompt_tokens}")
+print(f"- Completion tokens: {usage.completion_tokens}")
+print(f"- Total tokens: {usage.total_tokens}\n")
+
+tiktoken_prompt = [{"role": "user", "content": prompt}]
+tiktoken_prompt_tokens = num_tokens_from_messages(tiktoken_prompt)
+tiktoken_completion_tokens = num_tokens_from_messages(result)
+
+print("Tiktoken-calculated token usage:")
+print(f"- Prompt tokens: {tiktoken_prompt_tokens}")
+print(f"- Completion tokens: {tiktoken_completion_tokens}")
+print(f"- Total tokens: {tiktoken_prompt_tokens + tiktoken_completion_tokens}")
+```
+Both provide the same values:
+``` JSON
+System generated token usage:
+- Prompt tokens: 12
+- Completion tokens: 366
+- Total tokens: 378
+
+Tiktoken-calculated token usage:
+- Prompt tokens: 12
+- Completion tokens: 366
+- Total tokens: 378
+```
 
 ## 4. Tiktoken-calculated token usage in streaming API calls
