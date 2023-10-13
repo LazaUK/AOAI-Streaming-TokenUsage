@@ -22,37 +22,16 @@ pip install --upgrade openai
 ```
 pip install --upgrade tiktoken
 ```
-3. Next, deploy relevant GPT model in your Azure OpenAI resource.
+3. Next, deploy relevant GPT model in your Azure OpenAI resource and copy its name.
 ![screenshot_1_deploy](images/tiktoken_1_deploy.png)
-4. And copy API endpoint and key details.
+4. Then copy API endpoint and key details.
 ![screenshot_1_access](images/tiktoken_1_access.png)
+5. Finally, create environment variables OPENAI_API_DEPLOY, OPENAI_API_BASE and OPENAI_API_KEY, and assign to them copied deployment name, API endpoint and key details from the previous steps.
+![screenshot_1_environ](images/tiktoken_1_environ.png)
 
 
+## 2. Shared helper functions
 
+## 3. System- and Tiktoken-calculated token usage in non-streaming API calls
 
-
-4. Create environment variables and assign to them copied API endpoint and key details from the previous step.
-![screenshot_1_environ](images/demo_app_1_environ.png)
-5. Set AOAI_DEPLOYMENT_ID variable to the name of your Azure OpenAI Whisper deployment.
-![screenshot_1_variable](images/demo_app_1_variable.png)
-6. Install gradio Python package. This will allow you to define and instantiate a Web app, that will run locally as a Web service.
-```
-pip install --upgrade gradio
-```
-6. Install openai Python package. This is the client SDK that your Web app will use to interact with Azure OpenAI endpoint.
-```
-pip install --upgrade openai
-```
-7. Launch provided Python script for a Web app, integrated with Azure OpenAI endpoint.
-```
-python 1_Whisper_AOAI_endpoint.py
-```
-If successful, you should be able to access new Web app's interface at http://127.0.0.1:7860/ as shown below. You can now record your speech through the computer's microphone and transcribe it using Whisper model enabled in Azure OpenAI.
-![screenshot_1_AOAI](images/demo_app_1.png)
-
-## Option 2 - Access to Whisper models via Azure AI Speech endpoint
-Whisper models are also available through Azure AI Speech. Using batch API (similar to what is described [here](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/batch/python/python-client)), can increase audio file size limit up to 1 Gb.
-
-> **Note:** This option is still "Work in Progress". Please, check the latest version of 2_Whisper_AzureAISpeech_endpoint.py file provided for updates.
-![screenshot_1_AISpeech](images/demo_app_2.png)
-
+## 4. Tiktoken-calculated token usage in streaming API calls
