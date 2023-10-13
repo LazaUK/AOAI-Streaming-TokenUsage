@@ -123,7 +123,7 @@ print(f"- Prompt tokens: {tiktoken_prompt_tokens}")
 print(f"- Completion tokens: {tiktoken_completion_tokens}")
 print(f"- Total tokens: {tiktoken_prompt_tokens + tiktoken_completion_tokens}")
 ```
-Both provide the same values:
+Both provide the same values, as expected:
 ``` JSON
 System generated token usage:
 - Prompt tokens: 12
