@@ -13,12 +13,12 @@ stream=True
 - [4. Tiktoken-calculated token usage in streaming API calls](https://github.com/LazaUK/AOAI-Streaming-TokenUsage#4-tiktoken-calculated-token-usage-in-streaming-api-calls)
 
 ## 1. Prerequisites
-These notebooks would require installation of 2 Python packages:
-1. Interactions with API endpoint are enabled through openai package. You can install it with the following pip command.
+These notebooks would require installation of 2 additional Python packages:
+1. Interactions with API endpoint are enabled through *openai* package. You can install it with the following pip command.
 ```
 pip install --upgrade openai
 ```
-2. Conversion of texts into tokens and calcualtion of their numbers can be achieved through tiktoken package. You can install it with the following pip command.
+2. Conversion of texts into tokens and calcualtion of their numbers can be achieved through *tiktoken* package. You can install it with the following pip command.
 ```
 pip install --upgrade tiktoken
 ```
@@ -30,8 +30,8 @@ pip install --upgrade tiktoken
 ![screenshot_1_environ](images/tiktoken_1_environ.png)
 
 ## 2. Shared helper functions
-Both Jupyter noteboooks the same two helper functions:
-1. Completions helper function "get_completion" is used to call ChatCompletion API and containts **stream** to switch Streaming on or off.
+Both Jupyter noteboooks use the same two helper functions:
+1. Completions helper function "get_completion" is used to call ChatCompletion API and contains **stream** parameter to switch Streaming on or off.
 ``` Python
 def get_completion(prompt, model="gpt-3.5-turbo", engine=aoai_deployment):
     messages = [{"role": "user", "content": prompt}]
@@ -99,7 +99,7 @@ def num_tokens_from_messages(messages, model="gpt-3.5-turbo-0613"):
 ```
 
 ## 3. System- and Tiktoken-calculated token usage in non-streaming API calls
-When the Streaming option is disabled, Completion payload contains "usage" dictionary with the count of prompt and completion tokens.
+When the Streaming option is disabled, Completion payload contains "usage" dictionary with the system-provided count of prompt and completion tokens.
 ``` JSON
 "usage": {
   "prompt_tokens": 12,
@@ -107,7 +107,7 @@ When the Streaming option is disabled, Completion payload contains "usage" dicti
   "total_tokens": 378
 }
 ```
-In "1_AOAI_NonStreaming_Count.ipynb" notebook, you can retrieve both the endpoint provided and Tiktoken-processed token count.
+In "1_AOAI_NonStreaming_Count.ipynb" notebook, you can retrieve both the endpoint-provided and Tiktoken-processed token count.
 ``` Python
 print("System generated token usage:")
 print(f"- Prompt tokens: {usage.prompt_tokens}")
@@ -123,7 +123,7 @@ print(f"- Prompt tokens: {tiktoken_prompt_tokens}")
 print(f"- Completion tokens: {tiktoken_completion_tokens}")
 print(f"- Total tokens: {tiktoken_prompt_tokens + tiktoken_completion_tokens}")
 ```
-Both provide the same values, as expected:
+Both options generate the same values, as expected:
 ``` JSON
 System generated token usage:
 - Prompt tokens: 12
@@ -137,7 +137,7 @@ Tiktoken-calculated token usage:
 ```
 
 ## 4. Tiktoken-calculated token usage in streaming API calls
-When the Streaming option is enabled, Completion payload will no longer contain "usage" dictionary. That's why it would be necessary to calculate tokens using packages like tiktoken.
+When the Streaming option is enabled, Completion payload will no longer contain "usage" dictionary. That's why it would be necessary to calculate tokens using additional packages like **tiktoken**, ot implement required logic in-house.
 ``` Python
 tiktoken_prompt = [{"role": "user", "content": prompt}]
 tiktoken_prompt_tokens = num_tokens_from_messages(tiktoken_prompt)
@@ -148,7 +148,7 @@ print(f"- Prompt tokens: {tiktoken_prompt_tokens}")
 print(f"- Completion tokens: {tiktoken_completion_tokens}")
 print(f"- Total tokens: {tiktoken_prompt_tokens + tiktoken_completion_tokens}")
 ```
-Withe completion generated in chunks, the total number of tokens will be based on the sum of all generated chunks.
+With completion generated in chunks, the total number of tokens will be based on the sum of all generated chunks.
 ``` JSON
 Tiktoken-calculated token usage:
 - Prompt tokens: 12
