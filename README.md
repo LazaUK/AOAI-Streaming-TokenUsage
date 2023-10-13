@@ -1,14 +1,16 @@
-# Jump-start Python templates to demo Whisper in the Gradio-powered Web apps
-Whisper models allow you to transcribe and translate audio files, using their speech-to-text capabilities.
+# Calculating token usage in Azure OpenAI endpoints API calls with and without Streaming
+By default, when you call Azure OpenAI API endpoints, it's necessary to wait for the the entire completion to get generated and returned to the calling application. The longer is the completion, the longer it takes to get the response.
 
-In this repo I'll demo how to utilise Whisper models offline or consume them through an Azure endpoint (either from [Azure OpenAI](https://learn.microsoft.com/en-us/azure/ai-services/openai/overview) or [Azure AI Speech](https://learn.microsoft.com/en-GB/azure/ai-services/speech-service/overview) resources).
-
-Each option from the table of contents below is wrapped into a functional Web interface, powered by [Gradio](https://www.gradio.app/) platform.
+If you want to change the user experience and receive completion in chunks as it's being generated, then you can set Chat Completion's API paramemer strem to True (by default it's set to False). This would allow your Generative AI solution to start processing those chunks in parts and not to wait till the full completion.
+```
+stream-True
+```
 
 ## Table of contents:
-- [Option 0 - Access to Whisper models in offline mode](https://github.com/LazaUK/AOAI-Whisper-Gradio/blob/main#option-0---access-to-whisper-models-in-offline-mode)
-- [Option 1 - Access to Whisper models via Azure OpenAI endpoint](https://github.com/LazaUK/AOAI-Whisper-Gradio/tree/main#option-1---access-to-whisper-models-via-azure-openai-endpoint)
-- [Option 2 - Access to Whisper models via Azure AI Speech endpoint](https://github.com/LazaUK/AOAI-Whisper-Gradio/blob/main#option-2---access-to-whisper-models-via-azure-ai-speech-endpoint)
+- [1. Prerequisites](https://github.com/LazaUK/AOAI-Whisper-Gradio/blob/main#option-0---access-to-whisper-models-in-offline-mode)
+- [2. Shared helper functions](https://github.com/LazaUK/AOAI-Whisper-Gradio/tree/main#option-1---access-to-whisper-models-via-azure-openai-endpoint)
+- [3. System- and Tiktoken-calculated token usage in non-streaming API calls](https://github.com/LazaUK/AOAI-Whisper-Gradio/blob/main#option-2---access-to-whisper-models-via-azure-ai-speech-endpoint)
+- [4. Tiktoken-calculated token usage in streaming API calls](https://github.com/LazaUK/AOAI-Whisper-Gradio/blob/main#option-2---access-to-whisper-models-via-azure-ai-speech-endpoint)
 
 ## Option 0 - Access to Whisper models in offline mode
 Whisper model can be consumed offline. You may notice differences in its performance on the weaker local computers in comparison to an Azure based deployment. At the same time, this may serve certain scenarios where access to external resources is prohibited or not possible.
