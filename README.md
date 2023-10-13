@@ -45,6 +45,7 @@ def get_completion(prompt, model="gpt-3.5-turbo", engine=aoai_deployment):
     return response
 ```
 Tiktoken-enabled function "num_tokens_from_messages" is based on the sample code from [OpenAI's GitHub repo](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb). Depending on the model type, it sets relevant Tiktoken parameters and utilises encoding operation to transform provided texts into tokens and return their count.
+
 > *Notes*: **model** parameter's default setting is GPT-35-Turbo v0613. 
 ``` Python
 def num_tokens_from_messages(messages, model="gpt-3.5-turbo-0613"):
