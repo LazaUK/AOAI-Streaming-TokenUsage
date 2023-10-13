@@ -3,7 +3,7 @@ By default, when you call Azure OpenAI API endpoints, it's necessary to wait for
 
 If you want to change the user experience and receive completion in chunks as it's being generated, then you can set Chat Completion's API paramemer strem to True (by default it's set to False). This would allow your Generative AI solution to start processing those chunks in parts and not to wait till the full completion.
 ```
-stream-True
+stream=True
 ```
 
 ## Table of contents:
