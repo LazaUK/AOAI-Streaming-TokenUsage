@@ -7,10 +7,10 @@ stream=True
 ```
 
 ## Table of contents:
-- [1. Prerequisites](https://github.com/LazaUK/AOAI-Streaming-TokenUsage/blob/main/README.md#1-prerequisites)
-- [2. Shared helper functions](https://github.com/LazaUK/AOAI-Streaming-TokenUsage/blob/main/README.md#2-shared-helper-functions)
+- [1. Prerequisites](https://github.com/LazaUK/AOAI-Streaming-TokenUsage#1-prerequisites)
+- [2. Shared helper functions](https://github.com/LazaUK/AOAI-Streaming-TokenUsage#2-shared-helper-functions)
 - [3. System- and Tiktoken-calculated token usage in non-streaming API calls](https://github.com/LazaUK/AOAI-Streaming-TokenUsage#3-system--and-tiktoken-calculated-token-usage-in-non-streaming-api-calls)
-- [4. Tiktoken-calculated token usage in streaming API calls]()
+- [4. Tiktoken-calculated token usage in streaming API calls](https://github.com/LazaUK/AOAI-Streaming-TokenUsage#4-tiktoken-calculated-token-usage-in-streaming-api-calls)
 
 ## 1. Prerequisites
 These notebooks would require installation of 2 Python packages:
@@ -44,9 +44,9 @@ def get_completion(prompt, model="gpt-3.5-turbo", engine=aoai_deployment):
     )
     return response
 ```
-Tiktoken-enabled function "num_tokens_from_messages" is based on the sample code from [OpenAI's GitHub repo](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb). Depending on the model type, it sets relevant Tiktoken parameters and utilises encoding operation to transform provided texts into tokens and return their count.
+Tiktoken-enabled function "num_tokens_from_messages" is based on the sample code from [OpenAI's GitHub repo](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb). Depending on the model type, it defines relevant Tiktoken parameters and utilises encoding operation to transform provided texts into tokens and return their count.
 
-> *Notes*: **model** parameter's default setting is GPT-35-Turbo v0613. 
+> **model** parameter's default value is set to v0613 of GPT-35-Turbo. 
 ``` Python
 def num_tokens_from_messages(messages, model="gpt-3.5-turbo-0613"):
     """
