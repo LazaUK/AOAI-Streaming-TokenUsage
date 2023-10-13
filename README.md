@@ -1,7 +1,7 @@
-# Calculating token usage in Azure OpenAI endpoints API calls with and without Streaming
-By default, when you call Azure OpenAI API endpoints, it's necessary to wait for the the entire completion to get generated and returned to the calling application. The longer is the completion, the longer it takes to get the response.
+# Calculating token usage in OpenAI and Azure OpenAI endpoints API calls with and without Streaming
+By default, when you call an OpenAI or Azure OpenAI API endpoint, it's necessary to wait for the the entire completion to get generated before it's returned to the calling application. The longer is the completion, the longer it takes to get the response.
 
-If you want to change the user experience and receive completion in chunks as it's being generated, then you can set Chat Completion's API paramemer strem to True (by default it's set to False). This would allow your Generative AI solution to start processing those chunks in parts and not to wait till the full completion.
+If you want to change this user experience and get completion in chunks as it's being generated, then you can set Chat Completion's API paramemer stream to True (by default it's set to False). This would allow your Generative AI solution to start processing those chunks in parts in almost real-time and not to wait till the full completion.
 ```
 stream=True
 ```
@@ -12,30 +12,23 @@ stream=True
 - [3. System- and Tiktoken-calculated token usage in non-streaming API calls](https://github.com/LazaUK/AOAI-Whisper-Gradio/blob/main#option-2---access-to-whisper-models-via-azure-ai-speech-endpoint)
 - [4. Tiktoken-calculated token usage in streaming API calls](https://github.com/LazaUK/AOAI-Whisper-Gradio/blob/main#option-2---access-to-whisper-models-via-azure-ai-speech-endpoint)
 
-## Option 0 - Access to Whisper models in offline mode
-Whisper model can be consumed offline. You may notice differences in its performance on the weaker local computers in comparison to an Azure based deployment. At the same time, this may serve certain scenarios where access to external resources is prohibited or not possible.
-
-To instantiate Web app with offline Whisper functionality, please follow these steps:
-1. Install gradio Python package. This will allow you to define and instantiate a Web app, that will run locally as a Web service.
+## 1. Prerequisites
+These notebooks would require installation of 2 Python packages:
+1. Interactions with API endpoint are enabled through openai package. You can install it with the following pip command.
 ```
-pip install --upgrade gradio
+pip install --upgrade openai
 ```
-2. Install openai-whisper Python package. It comes with a few pre-trained Whisper models of various sizes. E.g. "base" model may require ~1 Gb of RAM, while "large" one would expect ~10 Gb of RAM.
+2. Conversion of texts into tokens and calcualtion of their numbers can be achieved through tiktoken package. You can install it with the following pip command.
 ```
-pip install --upgrade openai-whisper
+pip install --upgrade tiktoken
 ```
-3. Launch provided Python script for offline Web app.
-```
-python 0_Whisper_Offline.py
-```
-If successful, you should be able to access new Web app's interface at http://127.0.0.1:7860/ as shown below. You can now record your speech through the computer's microphone and transcribe it using one of selected Whisper models.
-![screenshot_0_offline](images/demo_app_0.png)
-> **Note:** You may also require installation of [FFMpeg package](https://ffmpeg.org/) to make this solution work on your local computer.
-
-## Option 1 - Access to Whisper models via Azure OpenAI endpoint
-Whisper models are now available as a part of Azure OpenAI resource. To consume its API endpoint in your Gradio app, please follow these steps:
-1. Deploy Whisper in available Azure OpenAI region.
+3. Deploy relevant GPT model in your Azure OpenAI resource.
 ![screenshot_1_deploy](images/demo_app_1_deploy.png)
+
+
+
+
+
 2. Copy API endpoint and key details.
 ![screenshot_1_access](images/demo_app_1_access.png)
 3. Create environment variables and assign to them copied API endpoint and key details from the previous step.
