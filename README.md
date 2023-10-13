@@ -22,20 +22,20 @@ pip install --upgrade openai
 ```
 pip install --upgrade tiktoken
 ```
-3. Deploy relevant GPT model in your Azure OpenAI resource.
+3. Next, deploy relevant GPT model in your Azure OpenAI resource.
 ![screenshot_1_deploy](images/tiktoken_1_deploy.png)
+4. And copy API endpoint and key details.
+![screenshot_1_access](images/tiktoken_1_access.png)
 
 
 
 
 
-2. Copy API endpoint and key details.
-![screenshot_1_access](images/demo_app_1_access.png)
-3. Create environment variables and assign to them copied API endpoint and key details from the previous step.
+4. Create environment variables and assign to them copied API endpoint and key details from the previous step.
 ![screenshot_1_environ](images/demo_app_1_environ.png)
-4. Set AOAI_DEPLOYMENT_ID variable to the name of your Azure OpenAI Whisper deployment.
+5. Set AOAI_DEPLOYMENT_ID variable to the name of your Azure OpenAI Whisper deployment.
 ![screenshot_1_variable](images/demo_app_1_variable.png)
-5. Install gradio Python package. This will allow you to define and instantiate a Web app, that will run locally as a Web service.
+6. Install gradio Python package. This will allow you to define and instantiate a Web app, that will run locally as a Web service.
 ```
 pip install --upgrade gradio
 ```
