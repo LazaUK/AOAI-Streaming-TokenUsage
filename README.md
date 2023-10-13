@@ -1,7 +1,7 @@
 # Calculating token usage in OpenAI and Azure OpenAI endpoints API calls with and without Streaming
 By default, when you call an OpenAI or Azure OpenAI API endpoint, it's necessary to wait for the the entire completion to get generated before it's returned to the calling application. The longer is the completion, the longer it takes to get the response.
 
-If you want to change this user experience and get completion in chunks as it's being generated, then you can set Chat Completion's API paramemer stream to True (by default it's set to False). This would allow your Generative AI solution to start processing those chunks in parts in almost real-time and not to wait till the full completion.
+If you want to change this user experience and get completion in chunks as it's being generated, then you can set Chat Completion's API paramemer stream to True (by default it's set to False). This would allow your Generative AI solution to start processing those chunks in almost real-time and not to wait till the full completion.
 ```
 stream=True
 ```
