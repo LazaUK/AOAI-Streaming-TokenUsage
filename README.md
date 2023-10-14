@@ -1,7 +1,7 @@
-# Calculating token usage in OpenAI and Azure OpenAI endpoints API calls with and without Streaming
+# Calculating tokens usage in OpenAI and Azure OpenAI endpoints API calls with and without Streaming
 By default, when you call an OpenAI or Azure OpenAI API endpoint, it's necessary to wait for the the entire completion to get generated before it's returned to the calling application. The longer is the completion, the longer it takes to get the response.
 
-If you want to change this user experience and get completion in chunks as it's being generated, then you can set Chat Completion's API paramemer stream to True (by default it's set to False). This would allow your Generative AI solution to start processing those chunks in almost real-time and not to wait till the full completion.
+If you want to change this user experience and get completion in chunks as it's being generated, then you can set Chat Completion's API **stream** parameter to True (by default it's set to False). This would allow your Generative AI solution to start processing of those chunks in almost real-time and not to wait the full completion.
 ```
 stream=True
 ```
@@ -22,7 +22,7 @@ pip install --upgrade openai
 ```
 pip install --upgrade tiktoken
 ```
-3. Next, deploy relevant GPT model in your Azure OpenAI resource and copy its name.
+3. Now deploy relevant GPT model in your Azure OpenAI resource and copy its name.
 ![screenshot_1_deploy](images/tiktoken_1_deploy.png)
 4. Then copy API endpoint and key details.
 ![screenshot_1_access](images/tiktoken_1_access.png)
@@ -44,7 +44,7 @@ def get_completion(prompt, model="gpt-3.5-turbo", engine=aoai_deployment):
     )
     return response
 ```
-Tiktoken-enabled function "num_tokens_from_messages" is based on the sample code from [OpenAI's GitHub repo](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb). Depending on the model type, it defines relevant Tiktoken parameters and utilises encoding operation to transform provided texts into tokens and return their count.
+Tiktoken-enabled function "num_tokens_from_messages" is based on a sample code from [OpenAI's GitHub repo](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb). Depending on the model type, it defines relevant Tiktoken parameters and utilises encoding operation to transform provided texts into tokens and return their count.
 
 > **model** parameter's default value is set to v0613 of GPT-35-Turbo. 
 ``` Python
@@ -98,7 +98,7 @@ def num_tokens_from_messages(messages, model="gpt-3.5-turbo-0613"):
     return num_tokens
 ```
 
-## 3. System- and Tiktoken-calculated token usage in non-streaming API calls
+## 3. System- and Tiktoken-calculated tokens usage in non-streaming API calls
 When the Streaming option is disabled, Completion payload contains "usage" dictionary with the system-provided count of prompt and completion tokens.
 ``` JSON
 "usage": {
@@ -136,7 +136,7 @@ Tiktoken-calculated token usage:
 - Total tokens: 378
 ```
 
-## 4. Tiktoken-calculated token usage in streaming API calls
+## 4. Tiktoken-calculated tokens usage in streaming API calls
 When the Streaming option is enabled, Completion payload will no longer contain "usage" dictionary. That's why it would be necessary to calculate tokens using additional packages like **tiktoken**, ot implement required logic in-house.
 ``` Python
 tiktoken_prompt = [{"role": "user", "content": prompt}]
